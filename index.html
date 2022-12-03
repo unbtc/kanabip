@@ -230,7 +230,10 @@ const generate = () => {
 let mappings_fix = {};
 const generateFix = () => {
   mappings_fix = {};
-  let k=0;
+const custom_chars = document.getElementById("chars").value.split(",");
+  console.log(custom_chars)
+  custom_words = getCombinations(custom_chars);
+let k=0;
   
   for (let custom_word of custom_words) {
 	  mappings_fix[custom_word] = bip39_words[k%bip39_words.length];
