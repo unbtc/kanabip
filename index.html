@@ -232,9 +232,6 @@
             // カスタムワードの数だけシャッフルされたBIP39単語リストを生成
             let extended_bip39_words = shuffleArray(bip39_words);
 
-            // デバッグ用: extended_bip39_wordsの内容を確認
-            console.log("extended_bip39_words after initial shuffle:", extended_bip39_words);
-
             // 足りない分を再度シャッフルして追加
             const requiredWords = custom_words.length;
             const bip39Length = bip39_words.length;
@@ -242,10 +239,6 @@
                 const remaining = requiredWords - extended_bip39_words.length;
                 extended_bip39_words = extended_bip39_words.concat(shuffleArray(bip39_words).slice(0, remaining));
             }
-
-            // デバッグ用: extended_bip39_wordsの長さと内容を確認
-            console.log("extended_bip39_words length:", extended_bip39_words.length);
-            console.log("extended_bip39_words:", extended_bip39_words);
 
             // 全体をシャッフルして重複が均等に散らばるようにする
             extended_bip39_words = shuffleArray(extended_bip39_words);
