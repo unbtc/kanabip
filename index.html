@@ -1,190 +1,354 @@
 <!DOCTYPE html>
-<html><head>
+<html>
+
+<head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>ふっかつのじゅもん</title>
-	<style>ul{margin:30px;column-width:110px;column-count:auto;padding:20px;border:solid}li{list-style-type:none;margin:0 auto;padding:0;min-width:120px}a{color:#FB0;padding:0;background-image:linear-gradient(to right,rgba(0,0,0,0) 50%,rgb(255,187,0) 50%);background-position:0 0;background-size:200% auto;transition:.3s;text-decoration:none}a:hover{background-position:-100% 0;color:#FB0}em{font-size:.5em}strong{color:#fff}h2{color:#FB0}h3{color:#FB0}#logo1{font-size:3em;font-family:HelveticaNeue-BoldItalic}#logo2{font-size:3em;font-family:HelveticaNeue-LightItalic}#mappings{color:#CA7FFF;font-size:.8em}#date{color:#CA7FFF;font-size:.5em}#header{width:100%;vertical-align:middle;background:#eee;color:#CA7FFF;font-size:.8em;padding:1em 0}#pref{width:420px;margin:0 auto}#date{text-align:center}#btns{text-align:center}#main{margin:0 auto;padding:0;min-width:270px}#chars{width:98%;margin:0 auto;border:solid 2px #FB0;color:#FB0;resize:vertical}#hide{background:#444;color:#ddd}.description{width:420px;margin:0 auto;padding:.5em}.txt3{display:inline-block;width:6em;min-width:6em;max-width:100%;padding:0;border:dashed #CA7FFF;border-width:0 0 1px 0;background:#fff;margin:0 0 0 1em;color:#668}.butn{background:#FB0;border:0;border-radius:.5em;appearance:none;color:#fff;margin:2px 1px 8px 0;font-size:1em}.butn:hover{background:#FFE700}.butn:focus{outline:none;box-shadow:0 0 0 1px #FFE700}.img{width:90%;padding:1em}@media print{li{color:#000}ul{border:dashed 1px #999}.txt3{border:dashed #999;border-width:0 0 1px 0}}
+	<style>
+		ul {
+			margin: 30px;
+			column-width: 110px;
+			column-count: auto;
+			padding: 20px;
+			border: solid
+		}
+
+		li {
+			list-style-type: none;
+			margin: 0 auto;
+			padding: 0;
+			min-width: 120px
+		}
+
+		a {
+			color: #FB0;
+			padding: 0;
+			background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgb(255, 187, 0) 50%);
+			background-position: 0 0;
+			background-size: 200% auto;
+			transition: .3s;
+			text-decoration: none
+		}
+
+		a:hover {
+			background-position: -100% 0;
+			color: #FB0
+		}
+
+		em {
+			font-size: .5em
+		}
+
+		strong {
+			color: #fff
+		}
+
+		h2 {
+			color: #FB0
+		}
+
+		h3 {
+			color: #FB0
+		}
+
+		#logo1 {
+			font-size: 3em;
+			font-family: HelveticaNeue-BoldItalic
+		}
+
+		#logo2 {
+			font-size: 3em;
+			font-family: HelveticaNeue-LightItalic
+		}
+
+		#mappings {
+			color: #CA7FFF;
+			font-size: .8em
+		}
+
+		#date {
+			color: #CA7FFF;
+			font-size: .5em
+		}
+
+		#header {
+			width: 100%;
+			vertical-align: middle;
+			background: #eee;
+			color: #CA7FFF;
+			font-size: .8em;
+			padding: 1em 0
+		}
+
+		#pref {
+			width: 420px;
+			margin: 0 auto
+		}
+
+		#date {
+			text-align: center
+		}
+
+		#btns {
+			text-align: center
+		}
+
+		#main {
+			margin: 0 auto;
+			padding: 0;
+			min-width: 270px
+		}
+
+		#chars {
+			width: 98%;
+			margin: 0 auto;
+			border: solid 2px #FB0;
+			color: #FB0;
+			resize: vertical
+		}
+
+		#hide {
+			background: #444;
+			color: #ddd
+		}
+
+		.description {
+			width: 420px;
+			margin: 0 auto;
+			padding: .5em
+		}
+
+		.txt3 {
+			display: inline-block;
+			width: 6em;
+			min-width: 6em;
+			max-width: 100%;
+			padding: 0;
+			border: dashed #CA7FFF;
+			border-width: 0 0 1px 0;
+			background: #fff;
+			margin: 0 0 0 1em;
+			color: #668
+		}
+
+		.butn {
+			background: #FB0;
+			border: 0;
+			border-radius: .5em;
+			appearance: none;
+			color: #fff;
+			margin: 2px 1px 8px 0;
+			font-size: 1em
+		}
+
+		.butn:hover {
+			background: #FFE700
+		}
+
+		.butn:focus {
+			outline: none;
+			box-shadow: 0 0 0 1px #FFE700
+		}
+
+		.img {
+			width: 90%;
+			padding: 1em
+		}
+
+		@media print {
+			li {
+				color: #000
+			}
+
+			ul {
+				border: dashed 1px #999
+			}
+
+			.txt3 {
+				border: dashed #999;
+				border-width: 0 0 1px 0
+			}
+		}
 	</style>
-<script>
+	<script>
 
-window.onload = () => {
-		document.getElementById("date").innerText = new Date();
-		updateCount();
-		generate();
-		putSuggest();
-	}
-let bip39_words =
-	"abandon,ability,able,about,above,absent,absorb,abstract,absurd,abuse,access,accident,account,accuse,achieve,acid,acoustic,acquire,across,act,action,actor,actress,actual,adapt,add,addict,address,adjust,admit,adult,advance,advice,aerobic,affair,afford,afraid,again,age,agent,agree,ahead,aim,air,airport,aisle,alarm,album,alcohol,alert,alien,all,alley,allow,almost,alone,alpha,already,also,alter,always,amateur,amazing,among,amount,amused,analyst,anchor,ancient,anger,angle,angry,animal,ankle,announce,annual,another,answer,antenna,antique,anxiety,any,apart,apology,appear,apple,approve,april,arch,arctic,area,arena,argue,arm,armed,armor,army,around,arrange,arrest,arrive,arrow,art,artefact,artist,artwork,ask,aspect,assault,asset,assist,assume,asthma,athlete,atom,attack,attend,attitude,attract,auction,audit,august,aunt,author,auto,autumn,average,avocado,avoid,awake,aware,away,awesome,awful,awkward,axis,baby,bachelor,bacon,badge,bag,balance,balcony,ball,bamboo,banana,banner,bar,barely,bargain,barrel,base,basic,basket,battle,beach,bean,beauty,because,become,beef,before,begin,behave,behind,believe,below,belt,bench,benefit,best,betray,better,between,beyond,bicycle,bid,bike,bind,biology,bird,birth,bitter,black,blade,blame,blanket,blast,bleak,bless,blind,blood,blossom,blouse,blue,blur,blush,board,boat,body,boil,bomb,bone,bonus,book,boost,border,boring,borrow,boss,bottom,bounce,box,boy,bracket,brain,brand,brass,brave,bread,breeze,brick,bridge,brief,bright,bring,brisk,broccoli,broken,bronze,broom,brother,brown,brush,bubble,buddy,budget,buffalo,build,bulb,bulk,bullet,bundle,bunker,burden,burger,burst,bus,business,busy,butter,buyer,buzz,cabbage,cabin,cable,cactus,cage,cake,call,calm,camera,camp,can,canal,cancel,candy,cannon,canoe,canvas,canyon,capable,capital,captain,car,carbon,card,cargo,carpet,carry,cart,case,cash,casino,castle,casual,cat,catalog,catch,category,cattle,caught,cause,caution,cave,ceiling,celery,cement,census,century,cereal,certain,chair,chalk,champion,change,chaos,chapter,charge,chase,chat,cheap,check,cheese,chef,cherry,chest,chicken,chief,child,chimney,choice,choose,chronic,chuckle,chunk,churn,cigar,cinnamon,circle,citizen,city,civil,claim,clap,clarify,claw,clay,clean,clerk,clever,click,client,cliff,climb,clinic,clip,clock,clog,close,cloth,cloud,clown,club,clump,cluster,clutch,coach,coast,coconut,code,coffee,coil,coin,collect,color,column,combine,come,comfort,comic,common,company,concert,conduct,confirm,congress,connect,consider,control,convince,cook,cool,copper,copy,coral,core,corn,correct,cost,cotton,couch,country,couple,course,cousin,cover,coyote,crack,cradle,craft,cram,crane,crash,crater,crawl,crazy,cream,credit,creek,crew,cricket,crime,crisp,critic,crop,cross,crouch,crowd,crucial,cruel,cruise,crumble,crunch,crush,cry,crystal,cube,culture,cup,cupboard,curious,current,curtain,curve,cushion,custom,cute,cycle,dad,damage,damp,dance,danger,daring,dash,daughter,dawn,day,deal,debate,debris,decade,december,decide,decline,decorate,decrease,deer,defense,define,defy,degree,delay,deliver,demand,demise,denial,dentist,deny,depart,depend,deposit,depth,deputy,derive,describe,desert,design,desk,despair,destroy,detail,detect,develop,device,devote,diagram,dial,diamond,diary,dice,diesel,diet,differ,digital,dignity,dilemma,dinner,dinosaur,direct,dirt,disagree,discover,disease,dish,dismiss,disorder,display,distance,divert,divide,divorce,dizzy,doctor,document,dog,doll,dolphin,domain,donate,donkey,donor,door,dose,double,dove,draft,dragon,drama,drastic,draw,dream,dress,drift,drill,drink,drip,drive,drop,drum,dry,duck,dumb,dune,during,dust,dutch,duty,dwarf,dynamic,eager,eagle,early,earn,earth,easily,east,easy,echo,ecology,economy,edge,edit,educate,effort,egg,eight,either,elbow,elder,electric,elegant,element,elephant,elevator,elite,else,embark,embody,embrace,emerge,emotion,employ,empower,empty,enable,enact,end,endless,endorse,enemy,energy,enforce,engage,engine,enhance,enjoy,enlist,enough,enrich,enroll,ensure,enter,entire,entry,envelope,episode,equal,equip,era,erase,erode,erosion,error,erupt,escape,essay,essence,estate,eternal,ethics,evidence,evil,evoke,evolve,exact,example,excess,exchange,excite,exclude,excuse,execute,exercise,exhaust,exhibit,exile,exist,exit,exotic,expand,expect,expire,explain,expose,express,extend,extra,eye,eyebrow,fabric,face,faculty,fade,faint,faith,fall,false,fame,family,famous,fan,fancy,fantasy,farm,fashion,fat,fatal,father,fatigue,fault,favorite,feature,february,federal,fee,feed,feel,female,fence,festival,fetch,fever,few,fiber,fiction,field,figure,file,film,filter,final,find,fine,finger,finish,fire,firm,first,fiscal,fish,fit,fitness,fix,flag,flame,flash,flat,flavor,flee,flight,flip,float,flock,floor,flower,fluid,flush,fly,foam,focus,fog,foil,fold,follow,food,foot,force,forest,forget,fork,fortune,forum,forward,fossil,foster,found,fox,fragile,frame,frequent,fresh,friend,fringe,frog,front,frost,frown,frozen,fruit,fuel,fun,funny,furnace,fury,future,gadget,gain,galaxy,gallery,game,gap,garage,garbage,garden,garlic,garment,gas,gasp,gate,gather,gauge,gaze,general,genius,genre,gentle,genuine,gesture,ghost,giant,gift,giggle,ginger,giraffe,girl,give,glad,glance,glare,glass,glide,glimpse,globe,gloom,glory,glove,glow,glue,goat,goddess,gold,good,goose,gorilla,gospel,gossip,govern,gown,grab,grace,grain,grant,grape,grass,gravity,great,green,grid,grief,grit,grocery,group,grow,grunt,guard,guess,guide,guilt,guitar,gun,gym,habit,hair,half,hammer,hamster,hand,happy,harbor,hard,harsh,harvest,hat,have,hawk,hazard,head,health,heart,heavy,hedgehog,height,hello,helmet,help,hen,hero,hidden,high,hill,hint,hip,hire,history,hobby,hockey,hold,hole,holiday,hollow,home,honey,hood,hope,horn,horror,horse,hospital,host,hotel,hour,hover,hub,huge,human,humble,humor,hundred,hungry,hunt,hurdle,hurry,hurt,husband,hybrid,ice,icon,idea,identify,idle,ignore,ill,illegal,illness,image,imitate,immense,immune,impact,impose,improve,impulse,inch,include,income,increase,index,indicate,indoor,industry,infant,inflict,inform,inhale,inherit,initial,inject,injury,inmate,inner,innocent,input,inquiry,insane,insect,inside,inspire,install,intact,interest,into,invest,invite,involve,iron,island,isolate,issue,item,ivory,jacket,jaguar,jar,jazz,jealous,jeans,jelly,jewel,job,join,joke,journey,joy,judge,juice,jump,jungle,junior,junk,just,kangaroo,keen,keep,ketchup,key,kick,kid,kidney,kind,kingdom,kiss,kit,kitchen,kite,kitten,kiwi,knee,knife,knock,know,lab,label,labor,ladder,lady,lake,lamp,language,laptop,large,later,latin,laugh,laundry,lava,law,lawn,lawsuit,layer,lazy,leader,leaf,learn,leave,lecture,left,leg,legal,legend,leisure,lemon,lend,length,lens,leopard,lesson,letter,level,liar,liberty,library,license,life,lift,light,like,limb,limit,link,lion,liquid,list,little,live,lizard,load,loan,lobster,local,lock,logic,lonely,long,loop,lottery,loud,lounge,love,loyal,lucky,luggage,lumber,lunar,lunch,luxury,lyrics,machine,mad,magic,magnet,maid,mail,main,major,make,mammal,man,manage,mandate,mango,mansion,manual,maple,marble,march,margin,marine,market,marriage,mask,mass,master,match,material,math,matrix,matter,maximum,maze,meadow,mean,measure,meat,mechanic,medal,media,melody,melt,member,memory,mention,menu,mercy,merge,merit,merry,mesh,message,metal,method,middle,midnight,milk,million,mimic,mind,minimum,minor,minute,miracle,mirror,misery,miss,mistake,mix,mixed,mixture,mobile,model,modify,mom,moment,monitor,monkey,monster,month,moon,moral,more,morning,mosquito,mother,motion,motor,mountain,mouse,move,movie,much,muffin,mule,multiply,muscle,museum,mushroom,music,must,mutual,myself,mystery,myth,naive,name,napkin,narrow,nasty,nation,nature,near,neck,need,negative,neglect,neither,nephew,nerve,nest,net,network,neutral,never,news,next,nice,night,noble,noise,nominee,noodle,normal,north,nose,notable,note,nothing,notice,novel,now,nuclear,number,nurse,nut,oak,obey,object,oblige,obscure,observe,obtain,obvious,occur,ocean,october,odor,off,offer,office,often,oil,okay,old,olive,olympic,omit,once,one,onion,online,only,open,opera,opinion,oppose,option,orange,orbit,orchard,order,ordinary,organ,orient,original,orphan,ostrich,other,outdoor,outer,output,outside,oval,oven,over,own,owner,oxygen,oyster,ozone,pact,paddle,page,pair,palace,palm,panda,panel,panic,panther,paper,parade,parent,park,parrot,party,pass,patch,path,patient,patrol,pattern,pause,pave,payment,peace,peanut,pear,peasant,pelican,pen,penalty,pencil,people,pepper,perfect,permit,person,pet,phone,photo,phrase,physical,piano,picnic,picture,piece,pig,pigeon,pill,pilot,pink,pioneer,pipe,pistol,pitch,pizza,place,planet,plastic,plate,play,please,pledge,pluck,plug,plunge,poem,poet,point,polar,pole,police,pond,pony,pool,popular,portion,position,possible,post,potato,pottery,poverty,powder,power,practice,praise,predict,prefer,prepare,present,pretty,prevent,price,pride,primary,print,priority,prison,private,prize,problem,process,produce,profit,program,project,promote,proof,property,prosper,protect,proud,provide,public,pudding,pull,pulp,pulse,pumpkin,punch,pupil,puppy,purchase,purity,purpose,purse,push,put,puzzle,pyramid,quality,quantum,quarter,question,quick,quit,quiz,quote,rabbit,raccoon,race,rack,radar,radio,rail,rain,raise,rally,ramp,ranch,random,range,rapid,rare,rate,rather,raven,raw,razor,ready,real,reason,rebel,rebuild,recall,receive,recipe,record,recycle,reduce,reflect,reform,refuse,region,regret,regular,reject,relax,release,relief,rely,remain,remember,remind,remove,render,renew,rent,reopen,repair,repeat,replace,report,require,rescue,resemble,resist,resource,response,result,retire,retreat,return,reunion,reveal,review,reward,rhythm,rib,ribbon,rice,rich,ride,ridge,rifle,right,rigid,ring,riot,ripple,risk,ritual,rival,river,road,roast,robot,robust,rocket,romance,roof,rookie,room,rose,rotate,rough,round,route,royal,rubber,rude,rug,rule,run,runway,rural,sad,saddle,sadness,safe,sail,salad,salmon,salon,salt,salute,same,sample,sand,satisfy,satoshi,sauce,sausage,save,say,scale,scan,scare,scatter,scene,scheme,school,science,scissors,scorpion,scout,scrap,screen,script,scrub,sea,search,season,seat,second,secret,section,security,seed,seek,segment,select,sell,seminar,senior,sense,sentence,series,service,session,settle,setup,seven,shadow,shaft,shallow,share,shed,shell,sheriff,shield,shift,shine,ship,shiver,shock,shoe,shoot,shop,short,shoulder,shove,shrimp,shrug,shuffle,shy,sibling,sick,side,siege,sight,sign,silent,silk,silly,silver,similar,simple,since,sing,siren,sister,situate,six,size,skate,sketch,ski,skill,skin,skirt,skull,slab,slam,sleep,slender,slice,slide,slight,slim,slogan,slot,slow,slush,small,smart,smile,smoke,smooth,snack,snake,snap,sniff,snow,soap,soccer,social,sock,soda,soft,solar,soldier,solid,solution,solve,someone,song,soon,sorry,sort,soul,sound,soup,source,south,space,spare,spatial,spawn,speak,special,speed,spell,spend,sphere,spice,spider,spike,spin,spirit,split,spoil,sponsor,spoon,sport,spot,spray,spread,spring,spy,square,squeeze,squirrel,stable,stadium,staff,stage,stairs,stamp,stand,start,state,stay,steak,steel,stem,step,stereo,stick,still,sting,stock,stomach,stone,stool,story,stove,strategy,street,strike,strong,struggle,student,stuff,stumble,style,subject,submit,subway,success,such,sudden,suffer,sugar,suggest,suit,summer,sun,sunny,sunset,super,supply,supreme,sure,surface,surge,surprise,surround,survey,suspect,sustain,swallow,swamp,swap,swarm,swear,sweet,swift,swim,swing,switch,sword,symbol,symptom,syrup,system,table,tackle,tag,tail,talent,talk,tank,tape,target,task,taste,tattoo,taxi,teach,team,tell,ten,tenant,tennis,tent,term,test,text,thank,that,theme,then,theory,there,they,thing,this,thought,three,thrive,throw,thumb,thunder,ticket,tide,tiger,tilt,timber,time,tiny,tip,tired,tissue,title,toast,tobacco,today,toddler,toe,together,toilet,token,tomato,tomorrow,tone,tongue,tonight,tool,tooth,top,topic,topple,torch,tornado,tortoise,toss,total,tourist,toward,tower,town,toy,track,trade,traffic,tragic,train,transfer,trap,trash,travel,tray,treat,tree,trend,trial,tribe,trick,trigger,trim,trip,trophy,trouble,truck,true,truly,trumpet,trust,truth,try,tube,tuition,tumble,tuna,tunnel,turkey,turn,turtle,twelve,twenty,twice,twin,twist,two,type,typical,ugly,umbrella,unable,unaware,uncle,uncover,under,undo,unfair,unfold,unhappy,uniform,unique,unit,universe,unknown,unlock,until,unusual,unveil,update,upgrade,uphold,upon,upper,upset,urban,urge,usage,use,used,useful,useless,usual,utility,vacant,vacuum,vague,valid,valley,valve,van,vanish,vapor,various,vast,vault,vehicle,velvet,vendor,venture,venue,verb,verify,version,very,vessel,veteran,viable,vibrant,vicious,victory,video,view,village,vintage,violin,virtual,virus,visa,visit,visual,vital,vivid,vocal,voice,void,volcano,volume,vote,voyage,wage,wagon,wait,walk,wall,walnut,want,warfare,warm,warrior,wash,wasp,waste,water,wave,way,wealth,weapon,wear,weasel,weather,web,wedding,weekend,weird,welcome,west,wet,whale,what,wheat,wheel,when,where,whip,whisper,wide,width,wife,wild,will,win,window,wine,wing,wink,winner,winter,wire,wisdom,wise,wish,witness,wolf,woman,wonder,wood,wool,word,work,world,worry,worth,wrap,wreck,wrestle,wrist,write,wrong,yard,year,yellow,you,young,youth,zebra,zero,zone,zoo"
-	.split(',');
-
-// サジェスト生成
-const putSuggest = () => {
-	let sugg_datalist = document.getElementById('bip39_suggest');
-	sugg_datalist.innerHTML = ''; // Clear existing options
-	for (let g = 0; g < bip39_words.length; g++) {
-		let option = document.createElement('option');
-		option.setAttribute("value", bip39_words[g]);
-		sugg_datalist.appendChild(option);
-	}
-}
-
-const getCombinations = (chars) => {
-	const res = [];
-	for (let c1 of chars) {
-		for (let c2 of chars) {
-			res.push(`${c1}${c2}`);
+		window.onload = () => {
+			document.getElementById("date").innerText = new Date();
+			updateCount();
+			generate();
+			putSuggest();
 		}
-	}
-	return res;
-}
+		let bip39_words =
+			"abandon,ability,able,about,above,absent,absorb,abstract,absurd,abuse,access,accident,account,accuse,achieve,acid,acoustic,acquire,across,act,action,actor,actress,actual,adapt,add,addict,address,adjust,admit,adult,advance,advice,aerobic,affair,afford,afraid,again,age,agent,agree,ahead,aim,air,airport,aisle,alarm,album,alcohol,alert,alien,all,alley,allow,almost,alone,alpha,already,also,alter,always,amateur,amazing,among,amount,amused,analyst,anchor,ancient,anger,angle,angry,animal,ankle,announce,annual,another,answer,antenna,antique,anxiety,any,apart,apology,appear,apple,approve,april,arch,arctic,area,arena,argue,arm,armed,armor,army,around,arrange,arrest,arrive,arrow,art,artefact,artist,artwork,ask,aspect,assault,asset,assist,assume,asthma,athlete,atom,attack,attend,attitude,attract,auction,audit,august,aunt,author,auto,autumn,average,avocado,avoid,awake,aware,away,awesome,awful,awkward,axis,baby,bachelor,bacon,badge,bag,balance,balcony,ball,bamboo,banana,banner,bar,barely,bargain,barrel,base,basic,basket,battle,beach,bean,beauty,because,become,beef,before,begin,behave,behind,believe,below,belt,bench,benefit,best,betray,better,between,beyond,bicycle,bid,bike,bind,biology,bird,birth,bitter,black,blade,blame,blanket,blast,bleak,bless,blind,blood,blossom,blouse,blue,blur,blush,board,boat,body,boil,bomb,bone,bonus,book,boost,border,boring,borrow,boss,bottom,bounce,box,boy,bracket,brain,brand,brass,brave,bread,breeze,brick,bridge,brief,bright,bring,brisk,broccoli,broken,bronze,broom,brother,brown,brush,bubble,buddy,budget,buffalo,build,bulb,bulk,bullet,bundle,bunker,burden,burger,burst,bus,business,busy,butter,buyer,buzz,cabbage,cabin,cable,cactus,cage,cake,call,calm,camera,camp,can,canal,cancel,candy,cannon,canoe,canvas,canyon,capable,capital,captain,car,carbon,card,cargo,carpet,carry,cart,case,cash,casino,castle,casual,cat,catalog,catch,category,cattle,caught,cause,caution,cave,ceiling,celery,cement,census,century,cereal,certain,chair,chalk,champion,change,chaos,chapter,charge,chase,chat,cheap,check,cheese,chef,cherry,chest,chicken,chief,child,chimney,choice,choose,chronic,chuckle,chunk,churn,cigar,cinnamon,circle,citizen,city,civil,claim,clap,clarify,claw,clay,clean,clerk,clever,click,client,cliff,climb,clinic,clip,clock,clog,close,cloth,cloud,clown,club,clump,cluster,clutch,coach,coast,coconut,code,coffee,coil,coin,collect,color,column,combine,come,comfort,comic,common,company,concert,conduct,confirm,congress,connect,consider,control,convince,cook,cool,copper,copy,coral,core,corn,correct,cost,cotton,couch,country,couple,course,cousin,cover,coyote,crack,cradle,craft,cram,crane,crash,crater,crawl,crazy,cream,credit,creek,crew,cricket,crime,crisp,critic,crop,cross,crouch,crowd,crucial,cruel,cruise,crumble,crunch,crush,cry,crystal,cube,culture,cup,cupboard,curious,current,curtain,curve,cushion,custom,cute,cycle,dad,damage,damp,dance,danger,daring,dash,daughter,dawn,day,deal,debate,debris,decade,december,decide,decline,decorate,decrease,deer,defense,define,defy,degree,delay,deliver,demand,demise,denial,dentist,deny,depart,depend,deposit,depth,deputy,derive,describe,desert,design,desk,despair,destroy,detail,detect,develop,device,devote,diagram,dial,diamond,diary,dice,diesel,diet,differ,digital,dignity,dilemma,dinner,dinosaur,direct,dirt,disagree,discover,disease,dish,dismiss,disorder,display,distance,divert,divide,divorce,dizzy,doctor,document,dog,doll,dolphin,domain,donate,donkey,donor,door,dose,double,dove,draft,dragon,drama,drastic,draw,dream,dress,drift,drill,drink,drip,drive,drop,drum,dry,duck,dumb,dune,during,dust,dutch,duty,dwarf,dynamic,eager,eagle,early,earn,earth,easily,east,easy,echo,ecology,economy,edge,edit,educate,effort,egg,eight,either,elbow,elder,electric,elegant,element,elephant,elevator,elite,else,embark,embody,embrace,emerge,emotion,employ,empower,empty,enable,enact,end,endless,endorse,enemy,energy,enforce,engage,engine,enhance,enjoy,enlist,enough,enrich,enroll,ensure,enter,entire,entry,envelope,episode,equal,equip,era,erase,erode,erosion,error,erupt,escape,essay,essence,estate,eternal,ethics,evidence,evil,evoke,evolve,exact,example,excess,exchange,excite,exclude,excuse,execute,exercise,exhaust,exhibit,exile,exist,exit,exotic,expand,expect,expire,explain,expose,express,extend,extra,eye,eyebrow,fabric,face,faculty,fade,faint,faith,fall,false,fame,family,famous,fan,fancy,fantasy,farm,fashion,fat,fatal,father,fatigue,fault,favorite,feature,february,federal,fee,feed,feel,female,fence,festival,fetch,fever,few,fiber,fiction,field,figure,file,film,filter,final,find,fine,finger,finish,fire,firm,first,fiscal,fish,fit,fitness,fix,flag,flame,flash,flat,flavor,flee,flight,flip,float,flock,floor,flower,fluid,flush,fly,foam,focus,fog,foil,fold,follow,food,foot,force,forest,forget,fork,fortune,forum,forward,fossil,foster,found,fox,fragile,frame,frequent,fresh,friend,fringe,frog,front,frost,frown,frozen,fruit,fuel,fun,funny,furnace,fury,future,gadget,gain,galaxy,gallery,game,gap,garage,garbage,garden,garlic,garment,gas,gasp,gate,gather,gauge,gaze,general,genius,genre,gentle,genuine,gesture,ghost,giant,gift,giggle,ginger,giraffe,girl,give,glad,glance,glare,glass,glide,glimpse,globe,gloom,glory,glove,glow,glue,goat,goddess,gold,good,goose,gorilla,gospel,gossip,govern,gown,grab,grace,grain,grant,grape,grass,gravity,great,green,grid,grief,grit,grocery,group,grow,grunt,guard,guess,guide,guilt,guitar,gun,gym,habit,hair,half,hammer,hamster,hand,happy,harbor,hard,harsh,harvest,hat,have,hawk,hazard,head,health,heart,heavy,hedgehog,height,hello,helmet,help,hen,hero,hidden,high,hill,hint,hip,hire,history,hobby,hockey,hold,hole,holiday,hollow,home,honey,hood,hope,horn,horror,horse,hospital,host,hotel,hour,hover,hub,huge,human,humble,humor,hundred,hungry,hunt,hurdle,hurry,hurt,husband,hybrid,ice,icon,idea,identify,idle,ignore,ill,illegal,illness,image,imitate,immense,immune,impact,impose,improve,impulse,inch,include,income,increase,index,indicate,indoor,industry,infant,inflict,inform,inhale,inherit,initial,inject,injury,inmate,inner,innocent,input,inquiry,insane,insect,inside,inspire,install,intact,interest,into,invest,invite,involve,iron,island,isolate,issue,item,ivory,jacket,jaguar,jar,jazz,jealous,jeans,jelly,jewel,job,join,joke,journey,joy,judge,juice,jump,jungle,junior,junk,just,kangaroo,keen,keep,ketchup,key,kick,kid,kidney,kind,kingdom,kiss,kit,kitchen,kite,kitten,kiwi,knee,knife,knock,know,lab,label,labor,ladder,lady,lake,lamp,language,laptop,large,later,latin,laugh,laundry,lava,law,lawn,lawsuit,layer,lazy,leader,leaf,learn,leave,lecture,left,leg,legal,legend,leisure,lemon,lend,length,lens,leopard,lesson,letter,level,liar,liberty,library,license,life,lift,light,like,limb,limit,link,lion,liquid,list,little,live,lizard,load,loan,lobster,local,lock,logic,lonely,long,loop,lottery,loud,lounge,love,loyal,lucky,luggage,lumber,lunar,lunch,luxury,lyrics,machine,mad,magic,magnet,maid,mail,main,major,make,mammal,man,manage,mandate,mango,mansion,manual,maple,marble,march,margin,marine,market,marriage,mask,mass,master,match,material,math,matrix,matter,maximum,maze,meadow,mean,measure,meat,mechanic,medal,media,melody,melt,member,memory,mention,menu,mercy,merge,merit,merry,mesh,message,metal,method,middle,midnight,milk,million,mimic,mind,minimum,minor,minute,miracle,mirror,misery,miss,mistake,mix,mixed,mixture,mobile,model,modify,mom,moment,monitor,monkey,monster,month,moon,moral,more,morning,mosquito,mother,motion,motor,mountain,mouse,move,movie,much,muffin,mule,multiply,muscle,museum,mushroom,music,must,mutual,myself,mystery,myth,naive,name,napkin,narrow,nasty,nation,nature,near,neck,need,negative,neglect,neither,nephew,nerve,nest,net,network,neutral,never,news,next,nice,night,noble,noise,nominee,noodle,normal,north,nose,notable,note,nothing,notice,novel,now,nuclear,number,nurse,nut,oak,obey,object,oblige,obscure,observe,obtain,obvious,occur,ocean,october,odor,off,offer,office,often,oil,okay,old,olive,olympic,omit,once,one,onion,online,only,open,opera,opinion,oppose,option,orange,orbit,orchard,order,ordinary,organ,orient,original,orphan,ostrich,other,outdoor,outer,output,outside,oval,oven,over,own,owner,oxygen,oyster,ozone,pact,paddle,page,pair,palace,palm,panda,panel,panic,panther,paper,parade,parent,park,parrot,party,pass,patch,path,patient,patrol,pattern,pause,pave,payment,peace,peanut,pear,peasant,pelican,pen,penalty,pencil,people,pepper,perfect,permit,person,pet,phone,photo,phrase,physical,piano,picnic,picture,piece,pig,pigeon,pill,pilot,pink,pioneer,pipe,pistol,pitch,pizza,place,planet,plastic,plate,play,please,pledge,pluck,plug,plunge,poem,poet,point,polar,pole,police,pond,pony,pool,popular,portion,position,possible,post,potato,pottery,poverty,powder,power,practice,praise,predict,prefer,prepare,present,pretty,prevent,price,pride,primary,print,priority,prison,private,prize,problem,process,produce,profit,program,project,promote,proof,property,prosper,protect,proud,provide,public,pudding,pull,pulp,pulse,pumpkin,punch,pupil,puppy,purchase,purity,purpose,purse,push,put,puzzle,pyramid,quality,quantum,quarter,question,quick,quit,quiz,quote,rabbit,raccoon,race,rack,radar,radio,rail,rain,raise,rally,ramp,ranch,random,range,rapid,rare,rate,rather,raven,raw,razor,ready,real,reason,rebel,rebuild,recall,receive,recipe,record,recycle,reduce,reflect,reform,refuse,region,regret,regular,reject,relax,release,relief,rely,remain,remember,remind,remove,render,renew,rent,reopen,repair,repeat,replace,report,require,rescue,resemble,resist,resource,response,result,retire,retreat,return,reunion,reveal,review,reward,rhythm,rib,ribbon,rice,rich,ride,ridge,rifle,right,rigid,ring,riot,ripple,risk,ritual,rival,river,road,roast,robot,robust,rocket,romance,roof,rookie,room,rose,rotate,rough,round,route,royal,rubber,rude,rug,rule,run,runway,rural,sad,saddle,sadness,safe,sail,salad,salmon,salon,salt,salute,same,sample,sand,satisfy,satoshi,sauce,sausage,save,say,scale,scan,scare,scatter,scene,scheme,school,science,scissors,scorpion,scout,scrap,screen,script,scrub,sea,search,season,seat,second,secret,section,security,seed,seek,segment,select,sell,seminar,senior,sense,sentence,series,service,session,settle,setup,seven,shadow,shaft,shallow,share,shed,shell,sheriff,shield,shift,shine,ship,shiver,shock,shoe,shoot,shop,short,shoulder,shove,shrimp,shrug,shuffle,shy,sibling,sick,side,siege,sight,sign,silent,silk,silly,silver,similar,simple,since,sing,siren,sister,situate,six,size,skate,sketch,ski,skill,skin,skirt,skull,slab,slam,sleep,slender,slice,slide,slight,slim,slogan,slot,slow,slush,small,smart,smile,smoke,smooth,snack,snake,snap,sniff,snow,soap,soccer,social,sock,soda,soft,solar,soldier,solid,solution,solve,someone,song,soon,sorry,sort,soul,sound,soup,source,south,space,spare,spatial,spawn,speak,special,speed,spell,spend,sphere,spice,spider,spike,spin,spirit,split,spoil,sponsor,spoon,sport,spot,spray,spread,spring,spy,square,squeeze,squirrel,stable,stadium,staff,stage,stairs,stamp,stand,start,state,stay,steak,steel,stem,step,stereo,stick,still,sting,stock,stomach,stone,stool,story,stove,strategy,street,strike,strong,struggle,student,stuff,stumble,style,subject,submit,subway,success,such,sudden,suffer,sugar,suggest,suit,summer,sun,sunny,sunset,super,supply,supreme,sure,surface,surge,surprise,surround,survey,suspect,sustain,swallow,swamp,swap,swarm,swear,sweet,swift,swim,swing,switch,sword,symbol,symptom,syrup,system,table,tackle,tag,tail,talent,talk,tank,tape,target,task,taste,tattoo,taxi,teach,team,tell,ten,tenant,tennis,tent,term,test,text,thank,that,theme,then,theory,there,they,thing,this,thought,three,thrive,throw,thumb,thunder,ticket,tide,tiger,tilt,timber,time,tiny,tip,tired,tissue,title,toast,tobacco,today,toddler,toe,together,toilet,token,tomato,tomorrow,tone,tongue,tonight,tool,tooth,top,topic,topple,torch,tornado,tortoise,toss,total,tourist,toward,tower,town,toy,track,trade,traffic,tragic,train,transfer,trap,trash,travel,tray,treat,tree,trend,trial,tribe,trick,trigger,trim,trip,trophy,trouble,truck,true,truly,trumpet,trust,truth,try,tube,tuition,tumble,tuna,tunnel,turkey,turn,turtle,twelve,twenty,twice,twin,twist,two,type,typical,ugly,umbrella,unable,unaware,uncle,uncover,under,undo,unfair,unfold,unhappy,uniform,unique,unit,universe,unknown,unlock,until,unusual,unveil,update,upgrade,uphold,upon,upper,upset,urban,urge,usage,use,used,useful,useless,usual,utility,vacant,vacuum,vague,valid,valley,valve,van,vanish,vapor,various,vast,vault,vehicle,velvet,vendor,venture,venue,verb,verify,version,very,vessel,veteran,viable,vibrant,vicious,victory,video,view,village,vintage,violin,virtual,virus,visa,visit,visual,vital,vivid,vocal,voice,void,volcano,volume,vote,voyage,wage,wagon,wait,walk,wall,walnut,want,warfare,warm,warrior,wash,wasp,waste,water,wave,way,wealth,weapon,wear,weasel,weather,web,wedding,weekend,weird,welcome,west,wet,whale,what,wheat,wheel,when,where,whip,whisper,wide,width,wife,wild,will,win,window,wine,wing,wink,winner,winter,wire,wisdom,wise,wish,witness,wolf,woman,wonder,wood,wool,word,work,world,worry,worth,wrap,wreck,wrestle,wrist,write,wrong,yard,year,yellow,you,young,youth,zebra,zero,zone,zoo"
+				.split(',');
 
-const shuffleArray = (arr) => {
-	if (!Array.isArray(arr)) {
-		console.error("shuffleArray: arr is not an array", arr);
-		return [];
-	}
-	const copied = arr.concat();
-	for (let i = copied.length - 1; i > 0; i--) {
-		const j = crypto.getRandomValues(new Uint32Array(1))[0] % (i + 1);
-		[copied[i], copied[j]] = [copied[j], copied[i]];
-	}
-	return copied;
-}
-
-let mappings = {};
-const generate = () => {
-	mappings = {};
-	const custom_chars = document.getElementById("chars").value.split(",");
-	const custom_words = getCombinations(custom_chars);
-	// カスタムワードの数だけシャッフルされたBIP39単語リストを生成
-	let extended_bip39_words = shuffleArray(bip39_words);
-	// 足りない分を再度シャッフルして追加
-	const requiredWords = custom_words.length;
-	const bip39Length = bip39_words.length;
-	while (extended_bip39_words.length < requiredWords) {
-		const remaining = requiredWords - extended_bip39_words.length;
-		extended_bip39_words = extended_bip39_words.concat(shuffleArray(bip39_words).slice(0, remaining));
-	}
-	// 全体をシャッフルして重複が均等に散らばるようにする
-	extended_bip39_words = shuffleArray(extended_bip39_words);
-	for (let i = 0; i < custom_words.length; i++) {
-		mappings[custom_words[i]] = extended_bip39_words[i];
-	}
-	updateDisplay(Object.entries(mappings));
-}
-let mappings_fix = {};
-const generateFix = () => {
-	mappings_fix = {};
-	const custom_chars = document.getElementById("chars").value.split(",");
-	const custom_words = getCombinations(custom_chars);
-	let k = 0;
-	for (let custom_word of custom_words) {
-		mappings_fix[custom_word] = bip39_words[k % bip39_words.length];
-		k++;
-	}
-	updateDisplayFix(Object.entries(mappings_fix));
-}
-const updateDisplay = (mappingList) => {
-	const ul = document.getElementById("mappings");
-	ul.innerHTML = '';
-	for (let [custom_word, bip39_word] of mappingList) {
-		const li = document.createElement("li");
-		const input = document.createElement("input");
-		input.setAttribute("autocomplete", "on");
-		input.setAttribute("list", "bip39_suggest");
-		input.setAttribute("name", "yourarea");
-		input.setAttribute("type", "text");
-		input.setAttribute("class", "txt3");
-		input.setAttribute("value", `${bip39_word}`);
-		input.addEventListener('change', (event) => handleInputChange(event, custom_word));
-		const mapping = `${custom_word}`;
-		const text = document.createTextNode(mapping);
-		li.append(text);
-		li.append(input);
-		ul.appendChild(li);
-	}
-}
-
-const handleInputChange = (event, custom_word) => {
-	const newWord = event.target.value;
-	if (!bip39_words.includes(newWord)) {
-		alert("単語が不正です");
-		event.target.value = mappings[custom_word];
-		return;
-	}
-	const oldWord = mappings[custom_word];
-	// Find the custom word that currently maps to the new word
-	let existingCustomWord = null;
-	for (let key in mappings) {
-		if (mappings[key] === newWord) {
-			existingCustomWord = key;
-			break;
+		const putSuggest = () => {
+			let sugg_datalist = document.getElementById('bip39_suggest');
+			sugg_datalist.innerHTML = ''; // Clear existing options
+			for (let g = 0; g < bip39_words.length; g++) {
+				let option = document.createElement('option');
+				option.setAttribute("value", bip39_words[g]);
+				sugg_datalist.appendChild(option);
+			}
 		}
-	}
-	// Swap the words
-	if (existingCustomWord) {
-		mappings[existingCustomWord] = oldWord;
-	}
-	mappings[custom_word] = newWord;
-	// Update the display
-	updateDisplay(Object.entries(mappings));
-}
-const updateDisplayFix = (mappingList) => {
-	const ul = document.getElementById("mappings");
-	ul.innerHTML = '';
-	for (let i = 0; i < bip39_words.length; i++) {
-		const [custom_word, bip39_word] = mappingList[i];
-		const li = document.createElement("li");
-		const input = document.createElement("input");
-		input.setAttribute("class", "txt3");
-		const mapping = `${custom_word}`;
-		const text = document.createTextNode(mapping)
-		input.setAttribute("value", `${bip39_word}`);
-		li.append(text);
-		li.append(input);
-		ul.appendChild(li);
-	}
-}
-const compareString = (a, b) => {
-	if (a > b) {
-		return 1;
-	}
-	if (a < b) {
-		return -1;
-	}
-	return 0;
-}
-const sortByCustomWord = () => {
-	if (mappings) {
-		const mappingList = Object.entries(mappings);
-		mappingList.sort((a, b) => compareString(a[0], b[0]));
-		updateDisplay(mappingList);
-	}
-}
-const sortByBip39Word = () => {
-	if (mappings) {
-		const mappingList = Object.entries(mappings);
-		mappingList.sort((a, b) => compareString(a[1], b[1]));
-		updateDisplay(mappingList);
-	}
-}
-const print = (id) => {
-	header = document.getElementById('header')
-	header.style.display = "none"
-	window.print();
-	header.style.display = "block";
-}
-const updateCount = () => {
-	const custom_chars = document.getElementById("chars").value.split(",");
-	const count = custom_chars.length;
-	document.getElementById("cnt").innerText = count;
-}
-window.addEventListener('beforeunload', (event) => {
-	// Clear all input fields
-	const inputs = document.querySelectorAll('input[type="text"]');
-	inputs.forEach(input => input.value = '');
-});
-</script>
+
+		const getCombinations = (chars) => {
+			const res = [];
+			for (let c1 of chars) {
+				for (let c2 of chars) {
+					res.push(`${c1}${c2}`);
+				}
+			}
+			return res;
+		}
+
+		const shuffleArray = (arr) => {
+			if (!Array.isArray(arr)) {
+				console.error("shuffleArray: arr is not an array", arr);
+				return [];
+			}
+			const copied = arr.concat();
+			for (let i = copied.length - 1; i > 0; i--) {
+				const j = crypto.getRandomValues(new Uint32Array(1))[0] % (i + 1);
+				[copied[i], copied[j]] = [copied[j], copied[i]];
+			}
+			return copied;
+		}
+
+		let mappings = {};
+		const generate = () => {
+			mappings = {};
+			const custom_chars = document.getElementById("chars").value.split(",");
+			const custom_words = getCombinations(custom_chars);
+			// カスタムワードの数だけシャッフルされたBIP39単語リストを生成
+			let extended_bip39_words = shuffleArray(bip39_words);
+			// 足りない分を再度シャッフルして追加
+			const requiredWords = custom_words.length;
+			const bip39Length = bip39_words.length;
+			while (extended_bip39_words.length < requiredWords) {
+				const remaining = requiredWords - extended_bip39_words.length;
+				extended_bip39_words = extended_bip39_words.concat(shuffleArray(bip39_words).slice(0, remaining));
+			}
+			// 全体をシャッフルして重複が均等に散らばるようにする
+			extended_bip39_words = shuffleArray(extended_bip39_words);
+			for (let i = 0; i < custom_words.length; i++) {
+				mappings[custom_words[i]] = extended_bip39_words[i];
+			}
+			updateDisplay(Object.entries(mappings));
+		}
+		let mappings_fix = {};
+		const generateFix = () => {
+			mappings_fix = {};
+			const custom_chars = document.getElementById("chars").value.split(",");
+			const custom_words = getCombinations(custom_chars);
+			let k = 0;
+			for (let custom_word of custom_words) {
+				mappings_fix[custom_word] = bip39_words[k % bip39_words.length];
+				k++;
+			}
+			updateDisplayFix(Object.entries(mappings_fix));
+		}
+		const updateDisplay = (mappingList) => {
+			const ul = document.getElementById("mappings");
+			ul.innerHTML = '';
+			for (let [custom_word, bip39_word] of mappingList) {
+				const li = document.createElement("li");
+				const input = document.createElement("input");
+				input.setAttribute("autocomplete", "on");
+				input.setAttribute("list", "bip39_suggest");
+				input.setAttribute("name", "yourarea");
+				input.setAttribute("type", "text");
+				input.setAttribute("class", "txt3");
+				input.setAttribute("value", `${bip39_word}`);
+				input.addEventListener('change', (event) => handleInputChange(event, custom_word));
+				const mapping = `${custom_word}`;
+				const text = document.createTextNode(mapping);
+				li.append(text);
+				li.append(input);
+				ul.appendChild(li);
+			}
+		}
+
+		const handleInputChange = (event, custom_word) => {
+			const newWord = event.target.value;
+			if (!bip39_words.includes(newWord)) {
+				alert("単語が不正です");
+				event.target.value = mappings[custom_word];
+				return;
+			}
+			const oldWord = mappings[custom_word];
+			// 新しい単語に現在マップされているカスタムワードを探す
+			let existingCustomWord = null;
+			for (let key in mappings) {
+				if (mappings[key] === newWord) {
+					existingCustomWord = key;
+					break;
+				}
+			}
+			// 単語を入れ替える
+			if (existingCustomWord) {
+				mappings[existingCustomWord] = oldWord;
+			}
+			mappings[custom_word] = newWord;
+			updateDisplay(Object.entries(mappings));
+		}
+		const updateDisplayFix = (mappingList) => {
+			const ul = document.getElementById("mappings");
+			ul.innerHTML = '';
+			for (let i = 0; i < bip39_words.length; i++) {
+				const [custom_word, bip39_word] = mappingList[i];
+				const li = document.createElement("li");
+				const input = document.createElement("input");
+				input.setAttribute("class", "txt3");
+				const mapping = `${custom_word}`;
+				const text = document.createTextNode(mapping)
+				input.setAttribute("value", `${bip39_word}`);
+				li.append(text);
+				li.append(input);
+				ul.appendChild(li);
+			}
+		}
+		const compareString = (a, b) => {
+			if (a > b) {
+				return 1;
+			}
+			if (a < b) {
+				return -1;
+			}
+			return 0;
+		}
+		const sortByCustomWord = () => {
+			if (mappings) {
+				const mappingList = Object.entries(mappings);
+				mappingList.sort((a, b) => compareString(a[0], b[0]));
+				updateDisplay(mappingList);
+			}
+		}
+		const sortByBip39Word = () => {
+			if (mappings) {
+				const mappingList = Object.entries(mappings);
+				mappingList.sort((a, b) => compareString(a[1], b[1]));
+				updateDisplay(mappingList);
+			}
+		}
+		const print = (id) => {
+			header = document.getElementById('header')
+			header.style.display = "none"
+			window.print();
+			header.style.display = "block";
+		}
+		const updateCount = () => {
+			const custom_chars = document.getElementById("chars").value.split(",");
+			const count = custom_chars.length;
+			document.getElementById("cnt").innerText = count;
+		}
+		window.addEventListener('beforeunload', (event) => {
+			// 入力を消去
+			const inputs = document.querySelectorAll('input[type="text"]');
+			inputs.forEach(input => input.value = '');
+		});
+	</script>
 </head>
 
 <body>
@@ -196,111 +360,139 @@ window.addEventListener('beforeunload', (event) => {
 			<em>文字種（半角コンマ区切り）:
 				<span id="cnt">
 				</span>種類</em>
-			<textarea onchange="updateCount()" id="chars">あ,い,う,え,お,か,き,く,け,こ,さ,し,す,せ,そ,た,ち,つ,て,と,な,に,ぬ,ね,の,は,ひ,ふ,へ,ほ,ま,み,む,め,も,や,ゆ,よ,ら,り,る,れ,ろ,わ,を,ん</textarea>
+			<textarea onchange="updateCount()"
+				id="chars">あ,い,う,え,お,か,き,く,け,こ,さ,し,す,せ,そ,た,ち,つ,て,と,な,に,ぬ,ね,の,は,ひ,ふ,へ,ほ,ま,み,む,め,も,や,ゆ,よ,ら,り,る,れ,ろ,わ,を,ん</textarea>
 			<br>
 			<div id="btns">
 				<button class="butn" onclick="generate()">ランダム生成</button>
 				<button class="butn" onclick="generateFix()">BIP39固定</button>
 				<button class="butn" onclick="print()">表のみをプリント</button>
-				<button class="butn" id="hidebtn" onclick="hideItem(); return false;" style="display: none;">使ってみる</button>
+				<button class="butn" id="hidebtn" onclick="hideItem(); return false;"
+					style="display: none;">使ってみる</button>
 				<button class="butn" id="dispbtn" onclick="dispItem(); return false;">このツールの使い方</button>
 			</div>
 			<datalist id="bip39_suggest">
 			</datalist>
 		</div>
 		<div id="hide" style="display: none;">
-            <div class="description">
-                <h2>BrainWalletの問題点</h2>
-                <p>
-                    <strong>BrainWallet
-                        <em>（ブレインウォレット）</em>
-                    </strong>とは、ビットコイン等の暗号通貨の
-                    <strong>秘密鍵</strong>やニーモニック・ワードを
-                    <strong>脳内に記憶する為の方法</strong>の一つです。</p>
-                <p>しかし、これには脆弱性があります。私たち人間はパスフレーズに何を使うか予測可能であり、辞書攻撃等によるハッキング技術は日々向上しています。パスワードの大規模なデータベースがいくつか流出しているので、これらをすべてハッシュ化し対応するアドレスに残高があるかどうかを確認することは非常に簡単です。同じ理由で、日本語のBIP39ワードリストから意味のある文章を作ったり
-                    <a href="https://github.com/armorybrainwallet/brain2bip" target="_blank">brain2bip</a>などの平文からBIP39ニーモニックを導き出すツールも推奨されません。</p>
-                <h2>それで、このツールは何をしますか？</h2>
-                <p>簡単に言えば、このツールの目的は
-                    <strong>「冗長化と記憶支援」</strong>です。鍵となる
-                    <strong>合言葉</strong>（24または48文字のひらがな平文）から独自の
-                    <strong>暗号表</strong>を作成し、辞書攻撃からあなたの大事なビットコインを守ります。また、ニーモニックをメモした
-                    <strong>物理的財布を紛失することを強く防ぎます</strong>。自分専用の暗号表と合言葉を作成したら、それを無くさないよう大事に保管してください。</p>
-                <h2>使い方</h2>
-                <p>1) 最初に
-                    <strong>紙と鉛筆</strong>を用意して下さい。
-                    <strong>決してPCやスマホは使わないで下さい</strong>。24文字の合言葉を作る場合（12フレーズ）例えば「私にはあなたを説得する時間はありません(I don't have time to try to convince you.)」という文章を合言葉にするなら、それをひらがなにして２文字ずつに分けます。</p>
-                <p>わた　しに　はあ*　なた　をせ　つと</p>
-                <p>くす　るじ　かん　はあ*　りま　せん</p>
-                <p>
-                    <strong>もし重複しているペアがあったら、合言葉を考え直します。</strong>
-                </p>
-                <p>わた　しに　はあ　なた　をせ　つと</p>
-                <p>くす　るじ　かん　
-                    <strong>があ</strong>　りま　せん</p>2) 合言葉の隣に、あなたが持っているBIP39ニーモニックを上から順に書き込んで下さい。
-                <p>
-                    <img class="img" src="img/words.png">
-                </p>
-                <p>3) 次に、暗号表に打ち込む順番を決めます。キーロガー等のウィルスからニーモニック を守る為に、順番はランダムかつダミーとなるワードを間に挟んで入力する必要があります。以下のように隣に適当な順番で12までの数字を書きましょう。これで暗号表を作る準備が整いました。</p>
-                <p>
-                    <img class="img" src="img/1.png">
-                </p>
-                <p>4) このツールをシークレットモードで開き、書いた数字の順番にワードを入力していきます。この例ではまず最初に「なた」の箇所に"grape"を打ちこめば良いことがわかります。以下のような感じで、</p>
-                <p>
-                    <img class="img" src="img/grape.png">
-                </p>
-                <p>単語の途中の文字を入れても自動的にサジェストされます。間にダミーを2〜5つほど変則的に加えながら、3)で書いた数字の順に入力して下さい。
-                    <strong>キーボードは極力使わずに</strong>、候補から選択します。ダミーを入力する箇所はなるべく広い範囲に、ワードは無作為に抽出します。</p>
-                <p>
-                    <img class="img" src="img/satoshi.png">
-                </p>
-                <p></p>
-                <p>5) 12単語すべて入力し終わったら、上のボタンからPDFに出力して保存します
-                    <em>(リロードするとデータが消えてしまうので気をつけて下さい)</em>。印刷の向きや倍率を変えることで列の数を整えることができます。可読性に気をつけて大きさを調整して下さい。
-                    <em>※現在chromeのみ動作確認済※</em>PDFデータは単体ではなく、JPEG等の画像にも書き出して保存しておくことをお勧めします。</p>
-                <p>
-                    <img class="img" src="img/print.png">
-                </p>
-                <p>
-                    <strong>※セキュリティアップデート：重複単語が入れ替わるようになりました！</strong>例えばappleと入力された場所にbookと入力したい場合、どこかに必ずある「元からbookと入力されていた場所」の文字が自動的にapple、つまり上書きされた文字と入れ替わります。（以前はもともと重複がいくつか存在するように作られていましたが、この変更によりワードは2048種類必ず重複せず存在するため、セキュリティはより強固となり安心してお使いいただけるようになります。</p>
-                <p>6) 暗号表ができたら、それが読めるかどうかテストしてみましょう。まず
-                    <strong>合言葉を思い出します</strong>（これを忘れたら完全にアウト！あなたのビットコインは永久に失われてしまいました）。「私にはあなたを説得する時間がありません」でしたね。まず「わた」から初めて「せん」までの隣にある単語を探して下さい。</p>
-                <p>
-                    <strong>ニーモニックは正しいですか？ウォレットが回復することをしっかり確認できたら、この作業に使ったメモは細切れにして厳重に処分して下さい。</strong>
-                </p>
-                <h2>利点と注意点</h2>
-                <p>この暗号表はコピーしていろいろな場所に保存することができます。しかし、オンラインに保管する場合は以下の点に注意してください。</p>
-                <p>・
-                    <strong>E2E
-                        <em>(エンドツーエンド)</em>暗号化がされていないストレージ</strong>はなるべく使わない
-                    <br>・googleなどのストレージを使う場合は、何らかの方法で暗号化する</p>
-                <p>以上の点に気を付ければ、USBメモリやCD-R、紙、ProtonmailなどのE2Eメールサービス等、実に様々な保存方法を活用して紛失を避けることができます。せっかく苦労して作ったのですから、
-                    <strong>５つ以上</strong>の保管方法で、同時に失う可能性がない環境を構築してみてください。冗長化は、このツールを使う上で
-                    <strong>最も大きなメリット</strong>です。ただし、この表がハッカーに盗まれてしまうと
-                    <strong>辞書攻撃が可能になってしまう</strong>点には十分注意して下さい。信頼できる人と共有するのであればまず大丈夫でしょう。</p>
-                <p>ただし、間違っても
-                    <strong>「合言葉」の方をインターネットやパソコンに保存することはしないで下さい</strong>。せっかく分断した２つの情報が結合してしまうことは、あなたの苦労を水の泡にし、あなたの財産が失われるきっかけになります。合言葉は必ず覚えるか、自分だけにしかわからない方法でメモしておいて下さい。短い合言葉ですから、それほど難しくはないはずです。</p>
-                <h3>ちょっと待って！これはニーモニックのメモをクラウドに保存して、強力なパスフレーズで運用するのとどう違いますか？</h3>
-                <p>現状、代表的なHW
-                    <em>(ハードウェアウォレット)</em>ではパスフレーズを覚えてくれない場合が殆どで、毎回キーボードに打ち込むという手順が一般的に必要です。ニーモニックを危険に晒してパスフレーズに頼りきった場合、手間や障害点がメリットに対して大きすぎるという問題があります。暗号化の際にハードウェアを使うので、安全な環境が構築できない人には難しいため、HWの開発者がこれに対応してくれるまで、この暗号表を用いて冗長化することは比較的良い選択と言えます。</p>
-                <h3>自分の好きな文字の種類（濁音やカタカナなど）で作ってもいいですか？</h3>
-                <p>ひらがなはカスタマイズできるようになっていますが、デフォルトの46文字より少なくすることは推奨していません。絶対に暗号表を誰かに見られない自信があるなら、思い切って30種類くらいで作ってみても良いかもしれません。ただし、
-                    <strong>ぢ</strong>や
-                    <strong>づ</strong>などの紛らわしい文字（音による判別が曖昧）は決して使わないようにして下さい。復号できなくなる可能性があります。デフォルトでは、
-                    <strong>濁音や小文字は濁点のない文字に読みかえる</strong>方法をとっています（暗号表が膨大になる為）。</p>
-                <h3>合言葉はなんでもいいですか？（有名な詩など）</h3>
-                <p>
-                    <img class="img" src="img/yuutei.png">
-                </p>
-                <p>はじめに説明したように、辞書攻撃を避けるためにはなるべく一般的でない名詞や出来事を使う必要があります。暗号表をハッカーの目から隠すということを条件に覚えやすい言葉にすることは可能ですが、「覚えやすく、かつ完全なセキュリティを実現できる方法」は現在のところ存在しません。このツールはあくまで辞書攻撃を困難にすることと、物理的な紛失を防止することに重点を置いています。非常に安全である代わりに、全く意味不明な短い言葉で保存したい場合は
-                    <a href="https://github.com/unbtc/kana46/blob/main/hiragana.txt">こちら</a>の対応表を見てひらがな２文字によりニーモニックを短縮する方法をお勧めします。こちらは、暗号表が露出してもどうということはありませんし、失くしても簡単に再現できます。</p>
-                <p>
-                    <em>generation code:
-                        <a href="">makura@getalby.com</a>/ ux & instructions:unbtc / inspire:
-                        <a href="http://github.com/lokuyow">lokuyow@walletofsatoshi.com</a>/ donation:
-                        <a href="mailto:LNURL1DP68GURN8GHJ7AMPD3KX2AR0VEEKZAR0WD5XJTNRDAKJ7TNHV4KXCTTTDEHHWM30D3H82UNVWQHHWUNED3SH2EMGXYCSPR5RZ6">LNURL</a>
-                    </em>
-                </p>
-            </div>
+			<div class="description">
+				<h2>BrainWalletの問題点</h2>
+				<p>
+					<strong>BrainWallet
+						<em>（ブレインウォレット）</em>
+					</strong>とは、ビットコイン等の暗号通貨の
+					<strong>秘密鍵</strong>やニーモニック・ワードを
+					<strong>脳内に記憶する為の方法</strong>の一つです。
+				</p>
+				<p>しかし、これには脆弱性があります。私たち人間はパスフレーズに何を使うか予測可能であり、辞書攻撃等によるハッキング技術は日々向上しています。パスワードの大規模なデータベースがいくつか流出しているので、これらをすべてハッシュ化し対応するアドレスに残高があるかどうかを確認することは非常に簡単です。同じ理由で、日本語のBIP39ワードリストから意味のある文章を作ったり
+					<a href="https://github.com/armorybrainwallet/brain2bip"
+						target="_blank">brain2bip</a>などの平文からBIP39ニーモニックを導き出すツールも推奨されません。
+				</p>
+				<h2>それで、このツールは何をしますか？</h2>
+				<p>簡単に言えば、このツールの目的は
+					<strong>「冗長化と記憶支援」</strong>です。鍵となる
+					<strong>合言葉</strong>（24または48文字のひらがな平文）から独自の
+					<strong>暗号表</strong>を作成し、辞書攻撃からあなたの大事なビットコインを守ります。また、ニーモニックをメモした
+					<strong>物理的財布を紛失することを強く防ぎます</strong>。自分専用の暗号表と合言葉を作成したら、それを無くさないよう大事に保管してください。
+				</p>
+				<h2>使い方</h2>
+				<p>1) 最初に
+					<strong>紙と鉛筆</strong>を用意して下さい。
+					<strong>決してPCやスマホは使わないで下さい</strong>。監視カメラにも気をつけて。24文字の合言葉を作る場合（12フレーズ）例えば「私にはあなたを説得する時間はありません」という文章を合言葉にするなら、それをひらがなにして２文字ずつに分けます。
+				</p>
+				<p>わた　しに　はあ*　なた　をせ　つと</p>
+				<p>くす　るじ　かん　はあ*　りま　せん</p>
+				<p>
+					<strong>もし重複しているペアがあったら、合言葉を考え直します。</strong>
+				</p>
+				<p>わた　しに　はあ　なた　をせ　つと</p>
+				<p>くす　るじ　かん　
+					<strong>があ</strong>　りま　せん
+				</p>2) 合言葉の隣に、あなたが持っているBIP39ニーモニックを上から順に書き込んで下さい。
+				<p>
+					<img class="img" src="img/words.png">
+				</p>
+				<p>デフォルトでは濁音や小文字は清音に読み替えています。
+
+
+					【（　るじ　→　 るし　）、（　があ　→　 かあ　）など。】
+
+
+					くれぐれも二つの文字が混在しないように注意して下さい。（「しよ」と「しょ」など）
+
+					※濁音等のカスタム文字を追加することもできますが、表が膨大になるため推奨しません。</p>
+				<p>3) 次に、暗号表に打ち込む順番を決めます。キーロガー等のマルウェアからニーモニック
+					を守る為に、順番はランダムかつダミーとなるワードを間に挟んで入力する必要があります。以下のように隣に適当な順番で12までの数字を書きましょう。これで暗号表を作る準備が整いました。</p>
+				<p>
+					<img class="img" src="img/1.png">
+				</p>
+				<p>4) このツールをシークレットモードで開き、書いた数字の順番にワードを入力していきます。この例ではまず最初に「なた」の箇所に"grape"を打ちこめば良いことがわかります。以下のような感じで、</p>
+				<p>
+					<img class="img" src="img/grape.png">
+				</p>
+				<p>単語の途中の文字を入れても自動的にサジェストされます。間にダミーを2〜5つほど変則的に加えながら、3)で書いた数字の順に入力して下さい。
+					<strong>キーボードは極力使わずに</strong>、候補から選択します。ダミーを入力する箇所はなるべく広い範囲に、ワードは無作為に抽出します。
+				</p>
+				<p>
+					<img class="img" src="img/satoshi.png">
+				</p>
+				<p></p>
+				<p>5) 12単語すべて入力し終わったら、上のボタンからPDFに出力して保存します
+					<em>(リロードするとデータが消えてしまうので気をつけて下さい)</em>。印刷の向きや倍率を変えることで列の数を整えることができます。可読性に気をつけて大きさを調整して下さい。
+					<em>※A4横向き51％が推奨です※</em>PDFデータは単体ではなく、JPEG等の画像にも書き出して保存しておくことをお勧めします。
+				</p>
+				<p>
+					<img class="img" src="img/print.png">
+				</p>
+				<p>
+					<strong>※セキュリティアップデート：重複単語が入れ替わるようになりました！</strong>例えばappleと入力された場所にbookと入力した場合、どこかに必ずある「元からbookと入力されていた場所」の文字が自動的にapple、つまり上書きされた文字と入れ替わります。（この変更によりワードは2048種類必ず存在するため、セキュリティはより強固となり安心してお使いいただけるようになります。
+				</p>
+				<p>6) 暗号表ができたら、それが読めるかどうかテストしてみましょう。まず
+					<strong>合言葉を思い出します</strong>（これを忘れたら完全にアウト！あなたのビットコインは永久に失われてしまいました）。「私にはあなたを説得する時間がありません」でしたね。まず「わた」から初めて「せん」までの隣にある単語を探して下さい。
+				</p>
+				<p>
+					<strong>ニーモニックは正しいですか？ウォレットが回復することをしっかり確認できたら、この作業に使ったメモは細切れにして厳重に処分して下さい。</strong>
+				</p>
+				<h2>利点と注意点</h2>
+				<p>この暗号表はコピーしていろいろな場所に保存することができます。しかし、オンラインに保管する場合は以下の点に注意してください。</p>
+				<p>・
+					<strong>E2E
+						<em>(エンドツーエンド)</em>暗号化がされていないストレージ</strong>はなるべく使わない
+					<br>・googleなどのストレージを使う場合は、何らかの方法で暗号化する
+				</p>
+				<p>以上の点に気を付ければ、USBメモリやCD-R、紙、ProtonmailなどのE2Eメールサービス等、実に様々な保存方法を活用して紛失を避けることができます。せっかく苦労して作ったのですから、
+					<strong>５つ以上</strong>の保管方法で、同時に失う可能性がない環境を構築してみてください。冗長化は、このツールを使う上で
+					<strong>最も大きなメリット</strong>です。ただし、この表がハッカーに盗まれてしまうと
+					<strong>辞書攻撃が可能になってしまう</strong>点には十分注意して下さい。信頼できる人と共有するのであればまず大丈夫でしょう。
+				</p>
+				<p>ただし、間違っても
+					<strong>「合言葉」の方をインターネットやパソコンに保存することはしないで下さい</strong>。せっかく分断した２つの情報が結合してしまうことは、あなたの苦労を水の泡にし、あなたの財産が失われるきっかけになります。合言葉は必ず覚えるか、自分だけにしかわからない方法でメモしておいて下さい。短い合言葉ですから、それほど難しくはないはずです。
+				</p>
+				<h3>ちょっと待って！これはニーモニックのメモをクラウドに保存して、強力なパスフレーズで運用するのとどう違いますか？</h3>
+				<p>現状、代表的なHW
+					<em>(ハードウェアウォレット)</em>ではパスフレーズを覚えてくれない場合が殆どで、毎回キーボードに打ち込むという手順が一般的に必要です。ニーモニックを危険に晒してパスフレーズに頼りきった場合、手間や障害点がメリットに対して大きすぎるという問題があります。同様に、シンプルにニーモニックのメモをzip等で暗号化・復号化する場合にも毎回ハードウェアを介するので、安全な環境が構築できない人にはリスクが高く、この暗号表を用いて冗長化することは比較的良い選択と言えます。
+				</p>
+				<h3>自分の好きな文字の種類（濁音やカタカナなど）で作ってもいいですか？</h3>
+				<p>ひらがなはカスタマイズできるようになっていますが、デフォルトの46文字より少なくすることは推奨していません。絶対に暗号表を誰かに見られない自信があるなら、思い切って30種類くらいで作ってみても良いかもしれません。ただし、
+					<strong>ぢ</strong>や
+					<strong>づ</strong>などの紛らわしい文字（音による判別が曖昧）は決して使わないようにして下さい。復号できなくなる可能性があります。デフォルトでは、
+					<strong>濁音や小文字は濁点のない文字に読みかえる</strong>方法をとっています（暗号表が膨大になる為）。
+				</p>
+				<h3>合言葉はなんでもいいですか？（有名な詩など）</h3>
+				<p>
+					<img class="img" src="img/yuutei.png">
+				</p>
+				<p>はじめに説明したように、辞書攻撃を避けるためにはなるべく一般的でない名詞や出来事を使う必要があります。暗号表をハッカーの目から隠すということを条件に覚えやすい言葉にすることは可能ですが、「覚えやすく、かつ完全なセキュリティを実現できる方法」は現在のところ存在しません。このツールはあくまで辞書攻撃を困難にすることと、物理的な紛失を防止することに重点を置いています。
+				</p>
+				<p>
+					<em>generation code:
+						<a href="">makura@getalby.com</a>/ ux & instructions:unbtc / inspire:
+						<a href="http://github.com/lokuyow">lokuyow@walletofsatoshi.com</a>/ donation:
+						<a
+							href="mailto:LNURL1DP68GURN8GHJ7AMPD3KX2AR0VEEKZAR0WD5XJTNRDAKJ7TNHV4KXCTTTDEHHWM30D3H82UNVWQHHWUNED3SH2EMGXYCSPR5RZ6">LNURL</a>
+					</em>
+				</p>
+			</div>
 		</div>
 	</div>
 	<div>
@@ -311,19 +503,19 @@ window.addEventListener('beforeunload', (event) => {
 		</ul>
 	</div>
 	<script>
-	//コンテンツの非表示
-	        function hideItem() {
-	            document.getElementById('hide').style.display = "none";  //テキストエリアの非表示
-	            document.getElementById('hidebtn').style.display = "none";  //非表示ボタンの非表示
-	            document.getElementById('dispbtn').style.display = "";  //表示ボタンの表示
-	        }
-	
-	        //コンテンツの表示
-	        function dispItem() {
-	            document.getElementById('hide').style.display = "";  //テキストエリアの表示
-	            document.getElementById('hidebtn').style.display = "";  //非表示ボタンの表示
-	            document.getElementById('dispbtn').style.display = "none";  //表示ボタンの非表示
-	        }
+		//コンテンツの非表示
+		function hideItem() {
+			document.getElementById('hide').style.display = "none";  //テキストエリアの非表示
+			document.getElementById('hidebtn').style.display = "none";  //非表示ボタンの非表示
+			document.getElementById('dispbtn').style.display = "";  //表示ボタンの表示
+		}
+
+		//コンテンツの表示
+		function dispItem() {
+			document.getElementById('hide').style.display = "";  //テキストエリアの表示
+			document.getElementById('hidebtn').style.display = "";  //非表示ボタンの表示
+			document.getElementById('dispbtn').style.display = "none";  //表示ボタンの非表示
+		}
 	</script>
 </body>
 
