@@ -1,176 +1,9 @@
-
 <!DOCTYPE html>
-<html>
-
-<head>
+<html><head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>ふっかつのじゅもん</title>
-	<style>
-        	ul {
-	            margin: 30px;
-	            column-width: 110px;
-	            column-count: auto;
-	            padding: 20px;
-	            border: solid;
-	        }
-	
-	        li {
-	            list-style-type: none;
-	            margin: 0 auto;
-	            padding: 0;
-	            min-width: 120px;
-	        }
-	
-	        a {
-	            color: #FFBB00;
-	            padding: 0;
-	            background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgb(255, 187, 0) 50%);
-	            background-position: 0 0;
-	            background-size: 200% auto;
-	            transition: .3s;
-	            text-decoration: none;
-	        }
-	
-	        a:hover {
-	            background-position: -100% 0;
-	            color: #FFBB00;
-	        }
-	
-	        em {
-	            font-size: 0.5em;
-	        }
-	
-	        strong {
-	            color: white;
-	        }
-	
-	        h2 {
-	            color: #FFBB00;
-	        }
-	
-	        h3 {
-	            color: #FFBB00;
-	        }
-	
-	        #logo1 {
-	            font-size: 3em;
-	            font-family: HelveticaNeue-BoldItalic;
-	        }
-	
-	        #logo2 {
-	            font-size: 3em;
-	            font-family: HelveticaNeue-LightItalic;
-	        }
-	
-	        #mappings {
-	            color: #CA7FFF;
-	            font-size: 0.8em;
-	        }
-	
-	        #date {
-	            color: #CA7FFF;
-	            font-size: 0.5em;
-	        }
-	
-	        #header {
-	            width: 100%;
-	            vertical-align: middle;
-	            background: #eee;
-	            color: #CA7FFF;
-	            font-size: 0.8em;
-	            padding: 1em 0;
-	        }
-	
-	        #pref {
-	            width: 420px;
-	            margin: 0 auto;
-	        }
-	
-	        #date {
-	            text-align: center;
-	        }
-	
-	        #btns {
-	            text-align: center;
-	        }
-	
-	        #main {
-	            margin: 0 auto;
-	            padding: 0;
-	            min-width: 270px;
-	        }
-	
-	        #chars {
-	            width: 98%;
-	            margin: 0 auto;
-	            border: solid 2px #FFBB00;
-	            color: #FFBB00;
-	            resize: vertical;
-	        }
-	
-	        #hide {
-	            background: #444;
-	            color: #ddd;
-	        }
-	
-	        .description {
-	            width: 420px;
-	            margin: 0 auto;
-	            padding: 0.5em;
-	        }
-	
-	        .txt3 {
-	            display: inline-block;
-	            width: 6em;
-	            min-width: 6em;
-	            max-width: 100%;
-	            padding: 0;
-	            border: dashed #CA7FFF;
-	            border-width: 0px 0px 1px 0px;
-	            background: #fff;
-	            margin: 0 0 0 1em;
-	            color: #668;
-	        }
-	
-	        .butn {
-	            background: #FFBB00;
-	            border: 0px;
-	            border-radius: 0.5em;
-	            appearance: none;
-	            color: #fff;
-	            margin: 2px 1px 8px 0px;
-	            font-size: 1em;
-	        }
-	
-	        .butn:hover {
-	            background: #FFE700;
-	        }
-	
-	        .butn:focus {
-	            outline: none;
-	            box-shadow: 0 0 0 1px #FFE700;
-	        }
-	
-	        .img {
-	            width: 90%;
-	            padding: 1em;
-	        }
-	
-	        @media print {
-	            li {
-	                color: black;
-	            }
-	
-	            ul {
-	                border: dashed 1px #999;
-	            }
-	
-	            .txt3 {
-	                border: dashed #999;
-	                border-width: 0px 0px 1px 0px;
-	            }
-	        }
+	<style>ul{margin:30px;column-width:110px;column-count:auto;padding:20px;border:solid}li{list-style-type:none;margin:0 auto;padding:0;min-width:120px}a{color:#FB0;padding:0;background-image:linear-gradient(to right,rgba(0,0,0,0) 50%,rgb(255,187,0) 50%);background-position:0 0;background-size:200% auto;transition:.3s;text-decoration:none}a:hover{background-position:-100% 0;color:#FB0}em{font-size:.5em}strong{color:#fff}h2{color:#FB0}h3{color:#FB0}#logo1{font-size:3em;font-family:HelveticaNeue-BoldItalic}#logo2{font-size:3em;font-family:HelveticaNeue-LightItalic}#mappings{color:#CA7FFF;font-size:.8em}#date{color:#CA7FFF;font-size:.5em}#header{width:100%;vertical-align:middle;background:#eee;color:#CA7FFF;font-size:.8em;padding:1em 0}#pref{width:420px;margin:0 auto}#date{text-align:center}#btns{text-align:center}#main{margin:0 auto;padding:0;min-width:270px}#chars{width:98%;margin:0 auto;border:solid 2px #FB0;color:#FB0;resize:vertical}#hide{background:#444;color:#ddd}.description{width:420px;margin:0 auto;padding:.5em}.txt3{display:inline-block;width:6em;min-width:6em;max-width:100%;padding:0;border:dashed #CA7FFF;border-width:0 0 1px 0;background:#fff;margin:0 0 0 1em;color:#668}.butn{background:#FB0;border:0;border-radius:.5em;appearance:none;color:#fff;margin:2px 1px 8px 0;font-size:1em}.butn:hover{background:#FFE700}.butn:focus{outline:none;box-shadow:0 0 0 1px #FFE700}.img{width:90%;padding:1em}@media print{li{color:#000}ul{border:dashed 1px #999}.txt3{border:dashed #999;border-width:0 0 1px 0}}
 	</style>
 <script>
 
@@ -223,13 +56,8 @@ const generate = () => {
 	mappings = {};
 	const custom_chars = document.getElementById("chars").value.split(",");
 	const custom_words = getCombinations(custom_chars);
-
 	// カスタムワードの数だけシャッフルされたBIP39単語リストを生成
 	let extended_bip39_words = shuffleArray(bip39_words);
-
-	// デバッグ用: extended_bip39_wordsの内容を確認
-	console.log("extended_bip39_words after initial shuffle:", extended_bip39_words);
-
 	// 足りない分を再度シャッフルして追加
 	const requiredWords = custom_words.length;
 	const bip39Length = bip39_words.length;
@@ -237,38 +65,28 @@ const generate = () => {
 		const remaining = requiredWords - extended_bip39_words.length;
 		extended_bip39_words = extended_bip39_words.concat(shuffleArray(bip39_words).slice(0, remaining));
 	}
-
-	// デバッグ用: extended_bip39_wordsの長さと内容を確認
-	console.log("extended_bip39_words length:", extended_bip39_words.length);
-	console.log("extended_bip39_words:", extended_bip39_words);
-
 	// 全体をシャッフルして重複が均等に散らばるようにする
 	extended_bip39_words = shuffleArray(extended_bip39_words);
-
 	for (let i = 0; i < custom_words.length; i++) {
 		mappings[custom_words[i]] = extended_bip39_words[i];
 	}
 	updateDisplay(Object.entries(mappings));
 }
-
 let mappings_fix = {};
 const generateFix = () => {
 	mappings_fix = {};
 	const custom_chars = document.getElementById("chars").value.split(",");
 	const custom_words = getCombinations(custom_chars);
 	let k = 0;
-
 	for (let custom_word of custom_words) {
 		mappings_fix[custom_word] = bip39_words[k % bip39_words.length];
 		k++;
 	}
 	updateDisplayFix(Object.entries(mappings_fix));
 }
-
 const updateDisplay = (mappingList) => {
 	const ul = document.getElementById("mappings");
 	ul.innerHTML = '';
-
 	for (let [custom_word, bip39_word] of mappingList) {
 		const li = document.createElement("li");
 		const input = document.createElement("input");
@@ -279,7 +97,6 @@ const updateDisplay = (mappingList) => {
 		input.setAttribute("class", "txt3");
 		input.setAttribute("value", `${bip39_word}`);
 		input.addEventListener('change', (event) => handleInputChange(event, custom_word));
-
 		const mapping = `${custom_word}`;
 		const text = document.createTextNode(mapping);
 		li.append(text);
@@ -291,12 +108,11 @@ const updateDisplay = (mappingList) => {
 const handleInputChange = (event, custom_word) => {
 	const newWord = event.target.value;
 	if (!bip39_words.includes(newWord)) {
-		alert("BIP39ワードが不正です");
+		alert("単語が不正です");
 		event.target.value = mappings[custom_word];
 		return;
 	}
 	const oldWord = mappings[custom_word];
-
 	// Find the custom word that currently maps to the new word
 	let existingCustomWord = null;
 	for (let key in mappings) {
@@ -305,17 +121,14 @@ const handleInputChange = (event, custom_word) => {
 			break;
 		}
 	}
-
 	// Swap the words
 	if (existingCustomWord) {
 		mappings[existingCustomWord] = oldWord;
 	}
 	mappings[custom_word] = newWord;
-
 	// Update the display
 	updateDisplay(Object.entries(mappings));
 }
-
 const updateDisplayFix = (mappingList) => {
 	const ul = document.getElementById("mappings");
 	ul.innerHTML = '';
@@ -332,7 +145,6 @@ const updateDisplayFix = (mappingList) => {
 		ul.appendChild(li);
 	}
 }
-
 const compareString = (a, b) => {
 	if (a > b) {
 		return 1;
@@ -342,7 +154,6 @@ const compareString = (a, b) => {
 	}
 	return 0;
 }
-
 const sortByCustomWord = () => {
 	if (mappings) {
 		const mappingList = Object.entries(mappings);
@@ -350,7 +161,6 @@ const sortByCustomWord = () => {
 		updateDisplay(mappingList);
 	}
 }
-
 const sortByBip39Word = () => {
 	if (mappings) {
 		const mappingList = Object.entries(mappings);
@@ -358,20 +168,17 @@ const sortByBip39Word = () => {
 		updateDisplay(mappingList);
 	}
 }
-
 const print = (id) => {
 	header = document.getElementById('header')
 	header.style.display = "none"
 	window.print();
 	header.style.display = "block";
 }
-
 const updateCount = () => {
 	const custom_chars = document.getElementById("chars").value.split(",");
 	const count = custom_chars.length;
 	document.getElementById("cnt").innerText = count;
 }
-
 window.addEventListener('beforeunload', (event) => {
 	// Clear all input fields
 	const inputs = document.querySelectorAll('input[type="text"]');
