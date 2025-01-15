@@ -222,13 +222,8 @@ const generate = () => {
 	mappings = {};
 	const custom_chars = document.getElementById("chars").value.split(",");
 	const custom_words = getCombinations(custom_chars);
-
 	// カスタムワードの数だけシャッフルされたBIP39単語リストを生成
 	let extended_bip39_words = shuffleArray(bip39_words);
-
-	// デバッグ用: extended_bip39_wordsの内容を確認
-	console.log("extended_bip39_words after initial shuffle:", extended_bip39_words);
-
 	// 足りない分を再度シャッフルして追加
 	const requiredWords = custom_words.length;
 	const bip39Length = bip39_words.length;
@@ -236,11 +231,6 @@ const generate = () => {
 		const remaining = requiredWords - extended_bip39_words.length;
 		extended_bip39_words = extended_bip39_words.concat(shuffleArray(bip39_words).slice(0, remaining));
 	}
-
-	// デバッグ用: extended_bip39_wordsの長さと内容を確認
-	console.log("extended_bip39_words length:", extended_bip39_words.length);
-	console.log("extended_bip39_words:", extended_bip39_words);
-
 	// 全体をシャッフルして重複が均等に散らばるようにする
 	extended_bip39_words = shuffleArray(extended_bip39_words);
 
@@ -278,7 +268,6 @@ const updateDisplay = (mappingList) => {
 		input.setAttribute("class", "txt3");
 		input.setAttribute("value", `${bip39_word}`);
 		input.addEventListener('change', (event) => handleInputChange(event, custom_word));
-
 		const mapping = `${custom_word}`;
 		const text = document.createTextNode(mapping);
 		li.append(text);
@@ -295,7 +284,6 @@ const handleInputChange = (event, custom_word) => {
 		return;
 	}
 	const oldWord = mappings[custom_word];
-
 	// Find the custom word that currently maps to the new word
 	let existingCustomWord = null;
 	for (let key in mappings) {
