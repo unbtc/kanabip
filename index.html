@@ -175,10 +175,8 @@
         window.onload = () => {
             document.getElementById("date").innerText = new Date();
             updateCount();
-            fetchBip39Words().then(() => {
                 generate();
                 putSuggest();
-            });
         }
 
 
