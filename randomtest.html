@@ -15,10 +15,6 @@
 
     <script>
         const shuffleArray = (arr) => {
-            if (!Array.isArray(arr)) {
-                console.error("shuffleArray: arr is not an array", arr);
-                return [];
-            }
             const copied = arr.concat();
             for (let i = copied.length - 1; i > 0; i--) {
                 const j = crypto.getRandomValues(new Uint32Array(1))[0] % (i + 1);
