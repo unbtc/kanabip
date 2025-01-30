@@ -249,22 +249,6 @@
 			updateDisplay(Object.entries(mappings));
 		}
 		let mappings_fix = {};
-		const generateFix = () => {
-			mappings_fix = {};
-			const custom_chars = document.getElementById("chars").value.split(",");
-			// 重複チェック
-			if (hasDuplicates(custom_chars)) {
-				alert("文字種が重複しています");
-				return;
-			}
-			const custom_words = getCombinations(custom_chars);
-			let k = 0;
-			for (let custom_word of custom_words) {
-				mappings_fix[custom_word] = bip39_words[k % bip39_words.length];
-				k++;
-			}
-			updateDisplayFix(Object.entries(mappings_fix));
-		}
 		const updateDisplay = (mappingList) => {
 			const ul = document.getElementById("mappings");
 			ul.innerHTML = '';
@@ -421,7 +405,6 @@ ${originalStyle}
 			<br>
 			<div id="btns">
 				<button class="butn" onclick="generate()">ランダム生成</button>
-				<button class="butn" onclick="generateFix()">BIP39固定</button>
 				<button class="butn" onclick="generatePrintVersion()">表のみをプリント</button>
 				<button class="butn" id="hidebtn" onclick="hideItem(); return false;"
 					style="display: none;">使ってみる</button>
