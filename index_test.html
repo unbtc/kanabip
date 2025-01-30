@@ -216,10 +216,18 @@
 			return copied;
 		}
 
+		const hasDuplicates = (array) => {
+			return new Set(array).size !== array.length;
+		}
 		let mappings = {};
 		const generate = () => {
 			mappings = {};
 			const custom_chars = document.getElementById("chars").value.split(",");
+			// 重複チェック
+			if (hasDuplicates(custom_chars)) {
+				alert("文字種が重複しています");
+				return;
+			}
 			const custom_words = getCombinations(custom_chars);
 			// カスタムワードの数だけシャッフルされたBIP39単語リストを生成
 			let extended_bip39_words = shuffleArray(bip39_words);
@@ -241,6 +249,11 @@
 		const generateFix = () => {
 			mappings_fix = {};
 			const custom_chars = document.getElementById("chars").value.split(",");
+			// 重複チェック
+			if (hasDuplicates(custom_chars)) {
+				alert("文字種が重複しています");
+				return;
+			}
 			const custom_words = getCombinations(custom_chars);
 			let k = 0;
 			for (let custom_word of custom_words) {
