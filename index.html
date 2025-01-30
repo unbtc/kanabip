@@ -216,12 +216,20 @@
 			return copied;
 		}
 
+		const hasDuplicates = (array) => {
+			return new Set(array).size !== array.length;
+		}
 		let mappings = {};
 		const generate = () => {
 			mappings = {};
 			const custom_chars = document.getElementById("chars").value.split(",");
+			// 重複チェック
+			if (hasDuplicates(custom_chars)) {
+				alert("文字種が重複しています");
+				return;
+			}
 			const custom_words = getCombinations(custom_chars);
-			// カスタムワードの数だけシャッフルされたBIP39単語リストを生成
+			// BIP39単語リスト全体をシャッフルして拡張リストの初期化
 			let extended_bip39_words = shuffleArray(bip39_words);
 			// 足りない分を再度シャッフルして追加
 			const requiredWords = custom_words.length;
@@ -230,17 +238,25 @@
 				const remaining = requiredWords - extended_bip39_words.length;
 				extended_bip39_words = extended_bip39_words.concat(shuffleArray(bip39_words).slice(0, remaining));
 			}
-			// 全体をシャッフルして重複が均等に散らばるようにする
+
+			// 全体をシャッフルして重複が均等に散らばるように
 			extended_bip39_words = shuffleArray(extended_bip39_words);
 			for (let i = 0; i < custom_words.length; i++) {
 				mappings[custom_words[i]] = extended_bip39_words[i];
 			}
+			// extended_bip39_words のサイズを表示
+			document.getElementById("size-display").innerText = `${Object.keys(mappings).length}`;
 			updateDisplay(Object.entries(mappings));
 		}
 		let mappings_fix = {};
 		const generateFix = () => {
 			mappings_fix = {};
 			const custom_chars = document.getElementById("chars").value.split(",");
+			// 重複チェック
+			if (hasDuplicates(custom_chars)) {
+				alert("文字種が重複しています");
+				return;
+			}
 			const custom_words = getCombinations(custom_chars);
 			let k = 0;
 			for (let custom_word of custom_words) {
@@ -348,6 +364,45 @@
 			const inputs = document.querySelectorAll('input[type="text"]');
 			inputs.forEach(input => input.value = '');
 		});
+		const generatePrintVersion = () => {
+			let printWindow = window.open("", "_blank");
+			let printDocument = printWindow.document;
+
+			// 元のスタイルを取得して適用
+			const originalStyle = document.querySelector('style').outerHTML;
+
+			// 印刷用のHTMLを構築
+			printDocument.write(`<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ふっかつのじゅもんは覚えていますか？</title>
+${originalStyle}
+</head>
+<body>
+<div id="main">
+    <ul id="mappings">
+    </ul>
+</div>
+</body>
+</html>`);
+
+			printDocument.close();
+
+			// 印刷用の内容を生成
+			let ul = printDocument.getElementById('mappings');
+			for (let [custom_word, bip39_word] of Object.entries(mappings)) {
+				let li = printDocument.createElement('li');
+				let mappingText = printDocument.createTextNode(`${custom_word} `);
+				let span = printDocument.createElement('span');
+				span.setAttribute('class', 'txt3');
+				span.textContent = bip39_word;
+				li.appendChild(mappingText);
+				li.appendChild(span);
+				ul.appendChild(li);
+			}
+		};
+
 	</script>
 </head>
 
@@ -357,16 +412,17 @@
 			<span id="logo1">Bip39</span>
 			<span id="logo2">Hiragana</span>（※試験運用：自己責任）
 			<br>
-			<em>文字種（半角コンマ区切り）:
+			<em>文字種（半角コンマ区切り）
 				<span id="cnt">
-				</span>種類</em>
+				</span>種：ワード数 <span id="size-display"></span></em>
+
 			<textarea onchange="updateCount()"
 				id="chars">あ,い,う,え,お,か,き,く,け,こ,さ,し,す,せ,そ,た,ち,つ,て,と,な,に,ぬ,ね,の,は,ひ,ふ,へ,ほ,ま,み,む,め,も,や,ゆ,よ,ら,り,る,れ,ろ,わ,を,ん</textarea>
 			<br>
 			<div id="btns">
 				<button class="butn" onclick="generate()">ランダム生成</button>
 				<button class="butn" onclick="generateFix()">BIP39固定</button>
-				<button class="butn" onclick="print()">表のみをプリント</button>
+				<button class="butn" onclick="generatePrintVersion()">表のみをプリント</button>
 				<button class="butn" id="hidebtn" onclick="hideItem(); return false;"
 					style="display: none;">使ってみる</button>
 				<button class="butn" id="dispbtn" onclick="dispItem(); return false;">このツールの使い方</button>
@@ -439,7 +495,7 @@
 				<p></p>
 				<p>5) 12単語すべて入力し終わったら、上のボタンからPDFに出力して保存します
 					<em>(リロードするとデータが消えてしまうので気をつけて下さい)</em>。印刷の向きや倍率を変えることで列の数を整えることができます。可読性に気をつけて大きさを調整して下さい。
-					<em>※A4横向き51％が推奨です※</em>PDFデータは単体ではなく、JPEG等の画像にも書き出して保存しておくことをお勧めします。
+					<em>※A4横向き51％が推奨です※</em>PDFデータは単体ではなく、JPEG等の画像にも書き出して保存しておくことをお勧めします。<s>(プリント画面からテキストをコピーできるようになっており、スペース区切りでスプレッドシートに読み込むことも可能です、が・・・推奨はしません)</s>
 				</p>
 				<p>
 					<img class="img" src="img/print.png">
@@ -490,7 +546,7 @@
 						<a href="https://x.com/makura645">makura@getalby.co</a> / UX & Update : unbtc / Inspire:
 						<a href="http://github.com/lokuyow">lokuyow@walletofsatoshi.com</a>/ donation:
 						<a
-							href="mailto:LNURL1DP68GURN8GHJ7AMPD3KX2AR0VEEKZAR0WD5XJTNRDAKJ7TNHV4KXCTTTDEHHWM30D3H82UNVWQHHWUNED3SH2EMGXYCSPR5RZ6">LNURL</a>
+							href="mailto:unbt@getalby.com">LNURL</a>
 					</em><em>免責事項:本ソフトウェアをダウンロード・利用した結果生じるいかなる損害についても、当管理人は責任を負いかねます。ユーザー自身の責任のもとでの利用をお願いいたします。</em>
 				</p>
 			</div>
