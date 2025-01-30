@@ -393,7 +393,7 @@ ${originalStyle}
 			let ul = printDocument.getElementById('mappings');
 			for (let [custom_word, bip39_word] of Object.entries(mappings)) {
 				let li = printDocument.createElement('li');
-				let mappingText = printDocument.createTextNode(`${custom_word}`);
+				let mappingText = printDocument.createTextNode(`${custom_word} `);
 				let span = printDocument.createElement('span');
 				span.setAttribute('class', 'txt3');
 				span.textContent = bip39_word;
@@ -495,7 +495,7 @@ ${originalStyle}
 				<p></p>
 				<p>5) 12単語すべて入力し終わったら、上のボタンからPDFに出力して保存します
 					<em>(リロードするとデータが消えてしまうので気をつけて下さい)</em>。印刷の向きや倍率を変えることで列の数を整えることができます。可読性に気をつけて大きさを調整して下さい。
-					<em>※A4横向き51％が推奨です※</em>PDFデータは単体ではなく、JPEG等の画像にも書き出して保存しておくことをお勧めします。
+					<em>※A4横向き51％が推奨です※</em>PDFデータは単体ではなく、JPEG等の画像にも書き出して保存しておくことをお勧めします。(プリント画面からテキストをコピーできるようになっており、スペース区切りでスプレッドシートに読み込むことも可能です、が・・・推奨はしません)
 				</p>
 				<p>
 					<img class="img" src="img/print.png">
