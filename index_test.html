@@ -229,7 +229,7 @@
 				return;
 			}
 			const custom_words = getCombinations(custom_chars);
-			// カスタムワードの数だけシャッフルされたBIP39単語リストを生成
+			// BIP39単語リスト全体をシャッフルして拡張リストの初期化
 			let extended_bip39_words = shuffleArray(bip39_words);
 			// 足りない分を再度シャッフルして追加
 			const requiredWords = custom_words.length;
@@ -238,11 +238,14 @@
 				const remaining = requiredWords - extended_bip39_words.length;
 				extended_bip39_words = extended_bip39_words.concat(shuffleArray(bip39_words).slice(0, remaining));
 			}
-			// 全体をシャッフルして重複が均等に散らばるようにする
+
+			// 全体をシャッフルして重複が均等に散らばるように
 			extended_bip39_words = shuffleArray(extended_bip39_words);
 			for (let i = 0; i < custom_words.length; i++) {
 				mappings[custom_words[i]] = extended_bip39_words[i];
 			}
+			// extended_bip39_words のサイズを表示
+			document.getElementById("size-display").innerText = `${Object.keys(mappings).length}`;
 			updateDisplay(Object.entries(mappings));
 		}
 		let mappings_fix = {};
@@ -409,9 +412,10 @@ ${originalStyle}
 			<span id="logo1">Bip39</span>
 			<span id="logo2">Hiragana</span>（※試験運用：自己責任）
 			<br>
-			<em>文字種（半角コンマ区切り）:
+			<em>文字種（半角コンマ区切り）
 				<span id="cnt">
-				</span>種類</em>
+				</span>種：ワード数 <span id="size-display"></span></em>
+
 			<textarea onchange="updateCount()"
 				id="chars">あ,い,う,え,お,か,き,く,け,こ,さ,し,す,せ,そ,た,ち,つ,て,と,な,に,ぬ,ね,の,は,ひ,ふ,へ,ほ,ま,み,む,め,も,や,ゆ,よ,ら,り,る,れ,ろ,わ,を,ん</textarea>
 			<br>
