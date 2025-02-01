@@ -291,16 +291,6 @@
 			updateDisplay(Object.entries(mappings));
 		}
 
-		const compareString = (a, b) => {
-			if (a > b) {
-				return 1;
-			}
-			if (a < b) {
-				return -1;
-			}
-			return 0;
-		}
-
 		const updateCount = () => {
 			const custom_chars = document.getElementById("chars").value.split(",");
 			const count = custom_chars.length;
