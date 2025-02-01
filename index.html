@@ -249,7 +249,6 @@
 			document.getElementById("size-display").innerText = `${Object.keys(mappings).length}`;
 			updateDisplay(Object.entries(mappings));
 		}
-		let mappings_fix = {};
 		const updateDisplay = (mappingList) => {
 			const ul = document.getElementById("mappings");
 			ul.innerHTML = '';
@@ -294,22 +293,7 @@
 			mappings[custom_word] = newWord;
 			updateDisplay(Object.entries(mappings));
 		}
-		const updateDisplayFix = (mappingList) => {
-			const ul = document.getElementById("mappings");
-			ul.innerHTML = '';
-			for (let i = 0; i < bip39_words.length; i++) {
-				const [custom_word, bip39_word] = mappingList[i];
-				const li = document.createElement("li");
-				const input = document.createElement("input");
-				input.setAttribute("class", "txt3");
-				const mapping = `${custom_word}`;
-				const text = document.createTextNode(mapping)
-				input.setAttribute("value", `${bip39_word}`);
-				li.append(text);
-				li.append(input);
-				ul.appendChild(li);
-			}
-		}
+
 		const compareString = (a, b) => {
 			if (a > b) {
 				return 1;
