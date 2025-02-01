@@ -310,19 +310,7 @@
 				updateDisplay(mappingList);
 			}
 		}
-		const sortByBip39Word = () => {
-			if (mappings) {
-				const mappingList = Object.entries(mappings);
-				mappingList.sort((a, b) => compareString(a[1], b[1]));
-				updateDisplay(mappingList);
-			}
-		}
-		const print = (id) => {
-			header = document.getElementById('header')
-			header.style.display = "none"
-			window.print();
-			header.style.display = "block";
-		}
+
 		const updateCount = () => {
 			const custom_chars = document.getElementById("chars").value.split(",");
 			const count = custom_chars.length;
